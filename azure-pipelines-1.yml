@@ -37,4 +37,6 @@ jobs:
         inputs:
           provider: 'azurerm'
           command: 'plan'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/Infra'
           environmentServiceNameAzureRM: 'shivansh'
+          environmentAzureRmOverrideSubscriptionID: '3bafb5d4-689a-4313-b617-9f3367263cd7'
