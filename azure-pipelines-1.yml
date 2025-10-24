@@ -11,9 +11,11 @@ jobs:
     displayName: Terraform init validate scan chalega
     steps:
       - task: TerraformInstaller@1
+        displayName: terraform install hoga
         inputs:
           terraformVersion: 'latest'
       - task: TerraformTask@5
+        displayName: terraform init hoga
         inputs:
           provider: 'azurerm'
           command: 'init'
@@ -25,11 +27,13 @@ jobs:
           backendAzureRmContainerName: 'mycontainer'
           backendAzureRmKey: 'terraform.tfstate'
       - task: TerraformTask@5
+        displayName: terraform install hoga
         inputs:
           provider: 'azurerm'
           command: 'validate'
           workingDirectory: '$(System.DefaultWorkingDirectory)/Infra'
       - task: TerraformTask@5
+        displayName: terraform plan hoga
         inputs:
           provider: 'azurerm'
           command: 'plan'
