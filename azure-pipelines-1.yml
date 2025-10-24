@@ -1,0 +1,36 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+pool: agentpratap
+jobs:
+  - job: terraform_init_validate_plan
+    displayName: Terraform init validate scan chalega
+    steps:
+      - task: TerraformInstaller@1
+        inputs:
+          terraformVersion: 'latest'
+      - task: TerraformTask@5
+        inputs:
+          provider: 'azurerm'
+          command: 'init'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/Infra'
+          backendServiceArm: 'shivansh'
+          backendAzureRmOverrideSubscriptionID: '3bafb5d4-689a-4313-b617-9f3367263cd7'
+          backendAzureRmResourceGroupName: 'rgg1'
+          backendAzureRmStorageAccountName: 'stgg1'
+          backendAzureRmContainerName: 'mycontainer'
+          backendAzureRmKey: 'terraform.tfstate'
+      - task: TerraformTask@5
+        inputs:
+          provider: 'azurerm'
+          command: 'validate'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/Infra'
+      - task: TerraformTask@5
+        inputs:
+          provider: 'azurerm'
+          command: 'plan'
+          environmentServiceNameAzureRM: 'shivansh'
