@@ -27,7 +27,7 @@ jobs:
           backendAzureRmContainerName: 'mycontainer'
           backendAzureRmKey: 'terraform.tfstate'
       - task: TerraformTask@5
-        displayName: terraform install hoga
+        displayName: terraform validate hoga
         inputs:
           provider: 'azurerm'
           command: 'validate'
